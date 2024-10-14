@@ -20,7 +20,22 @@ export default function TextForm(props) {
     props.Alert("Converted to LowerCase","success")
     
   }
+  const copyToClipboard = () => {
+    // Select the text area element
+    let textarea = document.getElementById('myBox');
+    
+    // Select the text inside the textarea
+    textarea.select();
+    textarea.setSelectionRange(0, 99999); // For mobile devices
 
+    // Copy the text to the clipboard
+    navigator.clipboard.writeText(textarea.value);
+    
+    // Provide feedback to the user
+    props.Alert("Text copied to clipboard", "success");
+}
+
+   
   const speak = () => {
     let msg = new SpeechSynthesisUtterance();
     msg.text = text;
@@ -45,6 +60,7 @@ export default function TextForm(props) {
       <button className='btn btn-primary mx-2' onClick={handleUpClick} >Convert to UpperCase</button>
       <button className='btn btn-primary mx-2' onClick={handleLoClick} >Convert to LowerCase</button>
       <button className='btn btn-primary mx-2' onClick={speak} >to speak</button>
+      <button className='btn btn-primary mx-2' onClick={copyToClipboard} >to speak</button>
       <div className="container my-3"style={{color:props.mode==='dark' ? 'white':'black'}}>
         <h2>Your Text Summary</h2>
         <p>{text.split(" ").length-1} words,{text.length} char</p>
