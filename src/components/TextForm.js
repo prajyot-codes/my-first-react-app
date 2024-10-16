@@ -2,6 +2,7 @@ import React ,{useState} from 'react'
 
 export default function TextForm(props) {
 //assining usestate
+let disabled={}
   const[text,setText]=useState('Enter text here');
 
 //funtion to handle upper case btn
@@ -42,9 +43,9 @@ export default function TextForm(props) {
         <textarea className="form-control my-3" value={text} onChange={handleOnChange} style={{backgroundColor:props.mode==='light' ? 'white':'#01185d' ,color:props.mode==='dark' ? 'white':'black'}}  id="myBox" rows="8"></textarea>
       </div>
         </div>
-      <button className='btn btn-primary mx-2 my-1' onClick={handleUpClick} >Convert to UpperCase</button>
-      <button className='btn btn-primary mx-2 my-1' onClick={handleLoClick} >Convert to LowerCase</button>
-      <button className='btn btn-primary mx-2 my-1' onClick={speak} >to speak</button>
+      <button disabled={text.length===0} className='btn btn-primary mx-2 my-1' onClick={handleUpClick} >Convert to UpperCase</button>
+      <button disabled={text.length===0} className='btn btn-primary mx-2 my-1' onClick={handleLoClick} >Convert to LowerCase</button>
+      <button disabled={text.length===0} className='btn btn-primary mx-2 my-1' onClick={speak} >to speak</button>
       <div className="container my-3"style={{color:props.mode==='dark' ? 'white':'black'}}>
         <h2>Your Text Summary</h2>
         <p>{text.split(" ").filter((element) => {
